@@ -13,31 +13,37 @@ var showBoard = function() {
   });
 };
 
-prompt.start();
 
-prompt.get(['playerAchoice'], function (err, result) {
-    showBoard();
+showBoard();
 
-
-    /*
-    Player 1
-    */
-    console.log('Choose a column and row separated by a space and starting at 0 for the first column:');
-    console.log('Player 1 (' + playerAChar +'), your turn: ' + result.playerchoice);
+var win = false;
 
 
-    // show board
-    var square = result.playerAchoice.split(' ');
-    col = Number(square[0]);
-    row = Number(square[1]);
+var getChoices = function() {
+    prompt.get(['playerAchoice', 'playerBchoice'], function (err, result) {
+        /*
+        Player 1
+        */
+        console.log('Player 1 (' + playerAChar +'), your turn: ' + result.playerAchoice);
+        var square = result.playerAchoice.split(' '); // get col and row as string input separated by a space
+        col = Number(square[0]);
+        row = Number(square[1]);
+        rows[row][col] = playerAChar; // place piece
+        showBoard();
 
-    console.log('col: ' + square[0]);
-    rows[col][row] = playerAChar;
-    showBoard();
+        console.log('Player 2 (' + playerBChar +'), your turn: ' + result.playerBchoice);
+        square = result.playerBchoice.split(' '); // get col and row as string input separated by a space
+        col = Number(square[0]);
+        row = Number(square[1]);
+        rows[row][col] = playerBChar; // place piece
+        showBoard();
+
+        if (!win) {
+          getChoices();
+        }
+    });
+
+};
 
 
-
-});
-
-
-
+getChoices();
