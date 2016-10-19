@@ -50,13 +50,14 @@ var determineWin = function() {
     var row = rows[i];
     var colWin = rows[0][i] === rows[1][i] && rows[0][i] === rows[2][i] && rows[0][i] !== char;
     var lDiagWin = rows[0][0] === rows[1][1] && rows[0][0] === rows[2][2] && rows[0][0] !== char;
+    var rDiagWin = rows[0][2] === rows[1][1] && rows[0][2] === rows[2][0] && rows[0][2] !== char;
 
     // rows
     if (row[0] === row[1] && row[1] === row[2] && row[0] !== char) {
       return true;
     } 
-    // columns or left diagonal
-    if (colWin || lDiagWin) {
+    // columnns or diagonals
+    if (colWin || lDiagWin || rDiagWin) {
       return true;
     }
 
@@ -64,7 +65,5 @@ var determineWin = function() {
   return false;
 
 };
-
-
 
 getChoices();
