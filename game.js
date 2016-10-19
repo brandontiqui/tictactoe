@@ -13,11 +13,8 @@ var showBoard = function() {
   });
 };
 
-
+// initial state
 showBoard();
-
-var win = false;
-
 
 var getChoices = function() {
     prompt.get(['playerAchoice', 'playerBchoice'], function (err, result) {
@@ -38,12 +35,24 @@ var getChoices = function() {
         rows[row][col] = playerBChar; // place piece
         showBoard();
 
-        if (!win) {
+        var winner = determineWin();
+        if (!winner) {
           getChoices();
+        } else {
+          console.log('Winner!');
         }
     });
-
 };
 
+var determineWin = function() {
+  // if same char in same row then win
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    if (row[0] === row[1] && row[1] === row[2] && row[0] !== char) {
+      return true;
+    } 
+  }
+  return false;
+};
 
 getChoices();
