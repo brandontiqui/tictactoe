@@ -21,6 +21,8 @@ var getChoices = function() {
         /*
         Player 1
         */
+
+        
         console.log('Player 1 (' + playerAChar +'), your turn: ' + result.playerAchoice);
         var square = result.playerAchoice.split(' '); // get col and row as string input separated by a space
         col = Number(square[0]);
@@ -56,13 +58,15 @@ var determineWin = function() {
     if (row[0] === row[1] && row[1] === row[2] && row[0] !== char) {
       return true;
     } 
-    // columnns or diagonals
+    // columns or diagonals
     if (colWin || lDiagWin || rDiagWin) {
       return true;
     }
-
   }
   return false;
+};
+
+var validatePlacement = function() {
 
 };
 
