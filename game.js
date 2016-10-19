@@ -48,11 +48,21 @@ var determineWin = function() {
   // if same char in same row then win
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
+    var colWin = rows[0][i] === rows[1][i] && rows[0][i] === rows[2][i] && rows[0][i] !== char;
+    // rows
     if (row[0] === row[1] && row[1] === row[2] && row[0] !== char) {
       return true;
     } 
+    // cols
+    if (colWin) {
+      return true;
+    }
+
   }
   return false;
+
 };
+
+
 
 getChoices();
