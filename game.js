@@ -49,12 +49,14 @@ var determineWin = function() {
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
     var colWin = rows[0][i] === rows[1][i] && rows[0][i] === rows[2][i] && rows[0][i] !== char;
+    var lDiagWin = rows[0][0] === rows[1][1] && rows[0][0] === rows[2][2] && rows[0][0] !== char;
+
     // rows
     if (row[0] === row[1] && row[1] === row[2] && row[0] !== char) {
       return true;
     } 
-    // cols
-    if (colWin) {
+    // columns or left diagonal
+    if (colWin || lDiagWin) {
       return true;
     }
 
